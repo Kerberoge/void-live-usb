@@ -1,0 +1,32 @@
+REQUIREMENTS:
+- can boot in both legacy and uefi mode; partition table is gpt -> grub bios partition
+
+PARTITION LAYOUT:
+- 1mb bios boot
+- 5gb partition for squashfs images and initramfs's (functions as esp)
+- rest of space for persistent storage (19gb?)
+
+ESP CONTAINS:
+everything that's needed to boot:
+- grub dir (contains grub modules, for both pc and efi targets)
+- kernel image
+- initramfs
+- squashfs image (2gb?)
+
+INITRAMFS CONTAINS:
+- required kernel modules to set up everything (squashfs + overlay)
+- init script
+- busybox
+
+ls /run/live:
+- squash (squashfs is mounted here)
+- tmp (upper dir, tmpfs) (can we make this a separate tmpfs?)
+- overlay (tmp over squash)
+- persistent (dirs in home are symlinks to dirs inside this dir) (ev. in fstab if no worky)
+
+TODO:
+- create working init script inside initramfs
+- create geninitramfs
+- create gensquashfs
+- find out how to configure with xfconf (if possible)
+- WHY DOES ELOGIND NOT WORK HUUHHHH

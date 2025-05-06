@@ -1,0 +1,8 @@
+#!/bin/sh
+
+until pgrep elogind >/dev/null; do
+	sleep 0.1
+done
+
+exec agetty --noissue --skip-login --nonewline --autologin joe \
+	tty2 38400 linux

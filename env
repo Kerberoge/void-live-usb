@@ -1,0 +1,50 @@
+#!/bin/bash
+
+hostname=VoidUSB
+
+packages_remove=(
+	xfsprogs
+	f2fs-tools
+	btrfs-progs
+	nvi
+	removed-packages
+	sudo
+	dash
+	iw
+	man-pages
+	kmod
+)
+
+packages_install=(
+	linux6.6
+	dracut
+	grub
+	opendoas
+	neovim
+	elogind
+	xorg-server
+	dejavu-fonts-ttf
+	xf86-input-libinput
+	xinit
+	xrdb
+	xfce4-session
+	xfwm4
+	xfce4-panel
+	xfce4-settings
+	Thunar
+	xfdesktop
+	tumbler
+	xfce4-terminal
+	xfce4-whiskermenu-plugin
+	papirus-icon-theme
+	arc-theme
+)
+
+msg() {
+	echo -e "\e[1m${@}\e[0m"
+}
+
+die() {
+	echo -e "\e[1;31m${@}\e[0m"
+	exit 1
+}
